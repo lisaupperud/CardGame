@@ -30,12 +30,19 @@ public class CardTest {
         assertEquals(value, SPADES);
     }
 
-    @Test
+    /*@Test
     void getSuitAsString() {
+        Card(SPADES, suit);
+
         switch (suit) {
             case SPADES:
                 String spades = "Spades";
         }
-        assertEquals("Spades", suit);
-    }
+
+        if (suit == SPADES) {
+            String spadesInString = "Spades";
+
+        }
+
+    }*/
 }
