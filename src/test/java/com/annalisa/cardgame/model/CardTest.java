@@ -8,6 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class CardTest {
 
     public final static int SPADES = 0;
+    public final static int JACK = 11;
     private int suit;
     private int value;
 
@@ -18,31 +19,31 @@ public class CardTest {
 
     @Test
     @DisplayName("Show suit of single card")
-    void getSuit() {
-        Card(SPADES, suit);
+    void getSuitTest() {
+        Card(SPADES, JACK);
         assertEquals(suit, SPADES);
     }
 
     @Test
     @DisplayName("Show value of single card")
-    void getValue() {
-        Card(SPADES, value);
-        assertEquals(value, SPADES);
+    void getValueTest() {
+        Card(SPADES, JACK);
+        assertEquals(value, JACK);
     }
 
-    /*@Test
-    void getSuitAsString() {
-        Card(SPADES, suit);
+    @Test
+    @DisplayName("Show suit of a single card as a String")
+    void getSuitAsStringTest() {
+        Card(SPADES, JACK);
+        // both tests passed
+        assertEquals("Spades", Card.getSuitAsString(SPADES));
+        // assertEquals("Spades", Card.getSuitAsString(0));
+    }
 
-        switch (suit) {
-            case SPADES:
-                String spades = "Spades";
-        }
-
-        if (suit == SPADES) {
-            String spadesInString = "Spades";
-
-        }
-
-    }*/
+    @Test
+    @DisplayName("Show value of a single card as a String")
+    void getValueAsStringTest() {
+        Card(SPADES, JACK);
+        assertEquals("Jack", Card.getValueAsString(JACK));
+    }
 }
