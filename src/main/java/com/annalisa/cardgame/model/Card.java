@@ -2,7 +2,6 @@ package com.annalisa.cardgame.model;
 
 public class Card {
 
-    private static String string;
     private final int SPADES = 0;
     private final int HEARTS = 1;
     private final int DIAMONDS = 2;
