@@ -37,7 +37,7 @@ public class Card {
         return value;
     }
 
-    public static String getSuitAsString(int suit) {
+    public String getSuitAsString(int suit) {
         return switch (suit) {
             case 0 -> "Spades";
             case 1 -> "Hearts";
@@ -48,7 +48,7 @@ public class Card {
 
     }
 
-    public static String getValueAsString(int value) {
+    public String getValueAsString(int value) {
         return switch (value) {
             case 0 -> "Joker";
             case 1 -> "Ace";

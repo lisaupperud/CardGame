@@ -8,10 +8,7 @@ public class Deck {
     private int next;
 
     public static void generateDeck() {
-
         deck = new ArrayList<>();
-
-        //deck = new ArrayList<>();
         for (int i = 1; i <= 13; i++) {
             /*deck.add(i, new Card(0, i));
             //System.out.println(deck[i].getSuitAsString(0) + " " + deck[i].getValueAsString(i));
@@ -26,31 +23,29 @@ public class Deck {
             deck.add(new Card(1, i));
             deck.add(new Card(2, i));
             deck.add(new Card(3, i));
-
         }
     }
-
-
 
     public static void shuffleDeck() {
         generateDeck();
         Random randomNumber = new Random();
 
         Card temp;
-
-        for (int i = 1; i <= 52; i++) {
+        for (int card = 1; card <= 51; card++) {
             // Find a random place in the deck
-            int rand = randomNumber.nextInt(52) + 1;
+            int rand = randomNumber.nextInt(51) + 1;
             // Swap cards in deck
-            temp = deck.get(i);
-            deck.set(i, deck.get(rand));
+            temp = deck.get(card);
+            deck.set(card, deck.get(rand));
             deck.set(rand, temp);
         }
+    }
 
+    public static void printDeck() {
+        generateDeck();
         for (Card card : deck) {
-            System.out.println(Card.getSuitAsString(card.getSuit()) + " " + Card.getValueAsString(card.getValue()));
+            System.out.println(card.getValueAsString(card.getValue()) + " of " + card.getSuitAsString(card.getSuit()));
         }
-
     }
 
 }

@@ -48,6 +48,7 @@ public class DeckTest {
     }
 
     @Test
+    @DisplayName("Print the entire deck of cards")
     void printDeckTest(){
         Deck.generateDeck();
         testDeck = Deck.deck;
@@ -56,7 +57,5 @@ public class DeckTest {
         }
 
         assertEquals(52, testDeck.size());
-        // failsafe for if card = null
-
     }
 }
