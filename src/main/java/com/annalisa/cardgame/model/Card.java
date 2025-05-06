@@ -49,6 +49,7 @@ public class Card {
 
     public static String getValueAsString(int value) {
         return switch (value) {
+            case 0 -> "Index 0";
             case 1 -> "Ace";
             case 2 -> "2";
             case 3 -> "3";

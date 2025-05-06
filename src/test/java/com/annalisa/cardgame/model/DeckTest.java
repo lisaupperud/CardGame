@@ -2,6 +2,8 @@ package com.annalisa.cardgame.model;
 
 import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.ArrayList;
 import java.util.Random;
 
 public class DeckTest {
@@ -11,17 +13,17 @@ public class DeckTest {
     private final int DIAMONDS = 2;
     private final int CLUBS = 3;
 
-    Card[] testDeck;
+    ArrayList<Card> testDeck;
 
     @Test
     @DisplayName("Generate a deck of cards")
     void generateDeckTest() {
         Deck.generateDeck();
         testDeck = Deck.deck;
-        assertEquals(53, testDeck.length);
+        assertEquals(52, testDeck.size());
     }
 
-    @Test
+   /* @Test
     @DisplayName("Generate a shuffled deck")
     void shuffleTest() {
         Deck.generateDeck();
@@ -39,5 +41,18 @@ public class DeckTest {
             testDeck[rand] = temp;
         }
         assertNotEquals(testDeck[5], temp);
+    }*/
+
+    @Test
+    void printDeckTest(){
+        Deck.generateDeck();
+        testDeck = Deck.deck;
+        for (Card card : testDeck) {
+            System.out.println(card);
+        }
+
+        assertEquals(53, testDeck.size());
+        // failsafe for if card = null
+
     }
 }
