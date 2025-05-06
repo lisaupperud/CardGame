@@ -38,7 +38,6 @@ public class DeckTest {
             testDeck[card] = testDeck[rand];
             testDeck[rand] = temp;
         }
-
         assertNotEquals(testDeck[5], temp);
     }
 }
