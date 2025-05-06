@@ -31,9 +31,9 @@ public class DeckTest {
         Deck.generateDeck();
         ArrayList<Card> unshuffledDeck = new ArrayList<>(Deck.deck);
         testDeck = Deck.deck;
-        Collections.shuffle(testDeck, new Random());
+        Deck.shuffleDeck();
 
-        /*
+        /* debug:
         // Print the unshuffled deck
         for (Card card : unshuffledDeck) {
             System.out.println(card.getSuitAsString(card.getSuit()) + " " + card.getValueAsString(card.getValue()));
@@ -52,9 +52,7 @@ public class DeckTest {
     void printDeckTest() {
         Deck.generateDeck();
         testDeck = Deck.deck;
-        for (Card card : testDeck) {
-            System.out.println(card.getValueAsString(card.getValue()) + " of " + card.getSuitAsString(card.getSuit()));
-        }
+        Deck.printDeck();
 
         assertEquals(52, testDeck.size());
     }
