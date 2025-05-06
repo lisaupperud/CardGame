@@ -23,7 +23,8 @@ public class DeckTest {
         assertEquals(52, testDeck.size());
     }
 
-   /* @Test
+    // be kristoffer om hjälp att förstå
+    @Test
     @DisplayName("Generate a shuffled deck")
     void shuffleTest() {
         Deck.generateDeck();
@@ -31,17 +32,20 @@ public class DeckTest {
         Random randomNumber = new Random();
 
         Card temp = null;
-        for (int card = 1; card <= 52; card++) {
+        for (int card = 1; card <= 51; card++) {
             // Find a random place in the deck
-            int rand = randomNumber.nextInt(52) + 1;
+            int rand = randomNumber.nextInt(51) + 1;
 
             // Swap cards in deck
-            temp = testDeck[card];
-            testDeck[card] = testDeck[rand];
-            testDeck[rand] = temp;
+            temp = testDeck.get(card);
+            testDeck.set(card, testDeck.get(rand));
+            testDeck.set(rand, temp);
+            /*System.out.println(testDeck.get(5).toString());
+            System.out.println("-----------------");
+            System.out.println(temp.toString());*/
         }
-        assertNotEquals(testDeck[5], temp);
-    }*/
+        assertNotEquals(testDeck.get(5), temp);
+    }
 
     @Test
     void printDeckTest(){
@@ -51,7 +55,7 @@ public class DeckTest {
             System.out.println(card);
         }
 
-        assertEquals(53, testDeck.size());
+        assertEquals(52, testDeck.size());
         // failsafe for if card = null
 
     }

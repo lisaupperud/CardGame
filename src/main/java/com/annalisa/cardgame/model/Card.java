@@ -7,6 +7,7 @@ public class Card {
     private final int DIAMONDS = 2;
     private final int CLUBS = 3;
 
+    private final int JOKER = 0;
     private final int ACE = 1;
     private final int JACK = 11;
     private final int QUEEN = 12;
@@ -49,7 +50,7 @@ public class Card {
 
     public static String getValueAsString(int value) {
         return switch (value) {
-            case 0 -> "Index 0";
+            case 0 -> "Joker";
             case 1 -> "Ace";
             case 2 -> "2";
             case 3 -> "3";
