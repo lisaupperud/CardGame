@@ -1,12 +1,10 @@
 package com.annalisa.cardgame;
 
+import com.annalisa.cardgame.model.Deck;
+
 public class Main {
-
     public static void main(String[] args) {
-
-        System.out.println("Hello World!");
-        System.out.println("Let's build a card game!");
-
+        Deck deck = new Deck();
+        deck.generateDeck();
     }
-
 }
