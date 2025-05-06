@@ -1,9 +1,11 @@
 package com.annalisa.cardgame.model;
 
 import org.junit.jupiter.api.*;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 
 public class DeckTest {
@@ -16,44 +18,42 @@ public class DeckTest {
     ArrayList<Card> testDeck;
 
     @Test
-    @DisplayName("Generate a deck of cards")
+    @DisplayName("Generate an unshuffled deck of cards")
     void generateDeckTest() {
         Deck.generateDeck();
         testDeck = Deck.deck;
         assertEquals(52, testDeck.size());
     }
 
-    // be kristoffer om hjälp att förstå
     @Test
-    @DisplayName("Generate a shuffled deck")
-    void shuffleTest() {
+    @DisplayName("Generate a shuffled deck of cards")
+    void shuffleDeckTest() {
         Deck.generateDeck();
+        ArrayList<Card> unshuffledDeck = new ArrayList<>(Deck.deck);
         testDeck = Deck.deck;
-        Random randomNumber = new Random();
+        Collections.shuffle(testDeck, new Random());
 
-        Card temp = null;
-        for (int card = 1; card <= 51; card++) {
-            // Find a random place in the deck
-            int rand = randomNumber.nextInt(51) + 1;
-
-            // Swap cards in deck
-            temp = testDeck.get(card);
-            testDeck.set(card, testDeck.get(rand));
-            testDeck.set(rand, temp);
-            /*System.out.println(testDeck.get(5).toString());
-            System.out.println("-----------------");
-            System.out.println(temp.toString());*/
+        /*
+        // Print the unshuffled deck
+        for (Card card : unshuffledDeck) {
+            System.out.println(card.getSuitAsString(card.getSuit()) + " " + card.getValueAsString(card.getValue()));
         }
-        assertNotEquals(testDeck.get(5), temp);
+        // Print the shuffled deck
+        for (Card card : testDeck) {
+            System.out.println(card.getSuitAsString(card.getSuit()) + " " + card.getValueAsString(card.getValue()));
+        }
+        */
+
+        assertNotEquals(unshuffledDeck, testDeck);
     }
 
     @Test
     @DisplayName("Print the entire deck of cards")
-    void printDeckTest(){
+    void printDeckTest() {
         Deck.generateDeck();
         testDeck = Deck.deck;
         for (Card card : testDeck) {
-            System.out.println(card);
+            System.out.println(card.getValueAsString(card.getValue()) + " of " + card.getSuitAsString(card.getSuit()));
         }
 
         assertEquals(52, testDeck.size());
