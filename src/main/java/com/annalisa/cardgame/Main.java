@@ -1,6 +1,7 @@
 package com.annalisa.cardgame;
 
 import com.annalisa.cardgame.model.Deck;
+import com.annalisa.cardgame.model.Hand;
 
 public class Main {
     public static void main(String[] args) {
@@ -20,5 +21,7 @@ public class Main {
         System.out.println("--------------------------------");
         System.out.println("CARDS LEFT IN DECK");
         Deck.cardsLeft();
+        System.out.println("PRINT HAND");
+        Hand.printHand();
     }
 }

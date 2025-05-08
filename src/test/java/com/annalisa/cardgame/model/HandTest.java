@@ -10,8 +10,6 @@ import java.util.ArrayList;
 public class HandTest {
 
     ArrayList<Card> testHand;
-    Card card = new Card(0,1);
-    Card card2 = new Card(0,2);
     ArrayList<Card> testDeck;
     ArrayList<Card> testCardsDealt;
 
@@ -21,31 +19,33 @@ public class HandTest {
         Deck.generateDeck();
         Deck.shuffleDeck();
         Deck.dealCard(10);
+        System.out.println("cardsDealt size: " + Deck.cardsDealt.size());
+
     }
 
     @Test
     @DisplayName("Try to print hand array")
     void printHandTest() {
-        testHand = new ArrayList<>();
         testDeck = Deck.deck;
         testCardsDealt = Deck.cardsDealt;
+        System.out.println("cardsDealt size: " + testCardsDealt.size());
 
+        testHand = Hand.hand;
+        System.out.println(testHand.size());
         testHand.addAll(testCardsDealt);
 
-        for (Card card : testHand) {
-            System.out.println(card.getValueAsString(card.getValue()) + " of " + card.getSuitAsString(card.getSuit()));
-        }
+        Hand.printHand();
 
         assertEquals(10, testHand.size());
     }
 
 
-    @Test
+    /*@Test
     @DisplayName(" ")
     void takeCardTest() {
         // take card from opponentArray or lakeArray and add to handArray
 
-    }
+    }*/
 
 
 }
