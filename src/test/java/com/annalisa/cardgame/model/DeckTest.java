@@ -57,7 +57,7 @@ public class DeckTest {
         Deck.generateDeck();
         Deck.dealCard(7);
         testDeck = Deck.deck;
-        testCardsDealt = Deck.dealtCards;
+        testCardsDealt = Deck.cardsDealt;
         assertEquals(7, testCardsDealt.size());
     }
 

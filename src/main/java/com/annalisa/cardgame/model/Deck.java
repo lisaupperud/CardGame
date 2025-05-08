@@ -2,12 +2,11 @@ package com.annalisa.cardgame.model;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 import java.util.Random;
 
 public class Deck {
     public static ArrayList<Card> deck;
-    public static ArrayList<Card> dealtCards;
+    public static ArrayList<Card> cardsDealt;
 
     public static void generateDeck() {
         deck = new ArrayList<>();
@@ -30,14 +29,14 @@ public class Deck {
     }
 
     public static void dealCard(int n) {
-        dealtCards = new ArrayList<>();
+        cardsDealt = new ArrayList<>();
 
         if (deck.isEmpty()) {
             throw new IllegalStateException("No more cards left");
         }
 
         for(int i = 0; i < n; i++) {
-            dealtCards.add(deck.remove(0));
+            cardsDealt.add(deck.remove(0));
         }
 
     }
