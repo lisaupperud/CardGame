@@ -5,17 +5,11 @@ import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Random;
 
 public class DeckTest {
 
-    private final int SPADES = 0;
-    private final int HEARTS = 1;
-    private final int DIAMONDS = 2;
-    private final int CLUBS = 3;
-
     ArrayList<Card> testDeck;
+    ArrayList<Card> testCardsDealt;
 
     @Test
     @DisplayName("Generate an unshuffled deck of cards")
@@ -58,35 +52,24 @@ public class DeckTest {
     }
 
     @Test
-    @DisplayName("Deals a number of cards (currently 1)")
+    @DisplayName("Deals a number of cards (currently 7)")
     void dealCardTest() {
         Deck.generateDeck();
+        Deck.dealCard(7);
         testDeck = Deck.deck;
-        int cardsUsed = 0;
-
-        if (cardsUsed == testDeck.size()){
-            throw new IllegalStateException("No more cards left");
-        }
-        cardsUsed = cardsUsed + 1;
-
-        assertEquals(1, cardsUsed);
+        testCardsDealt = Deck.dealtCards;
+        assertEquals(7, testCardsDealt.size());
     }
 
     @Test
     @DisplayName("See how many cards are left in the deck")
-    void cardsLeftTest(){
+    void cardsLeftTest() {
         Deck.generateDeck();
+        Deck.dealCard(10);
         testDeck = Deck.deck;
 
-        // exchange for dealCard() method
-        int cardsUsed = 0;
-        if (cardsUsed == testDeck.size()){
-            throw new IllegalStateException("No more cards left");
-        }
-        cardsUsed = cardsUsed + 1;
-
-        int cardsLeft = testDeck.size() - cardsUsed;
-        assertEquals(51, cardsLeft);
+        int cardsLeft = testDeck.size();
+        assertEquals(42, cardsLeft);
 
     }
 }
