@@ -56,4 +56,30 @@ public class DeckTest {
 
         assertEquals(52, testDeck.size());
     }
+
+    @Test
+    void dealCardTest() {
+        Deck.generateDeck();
+        testDeck = Deck.deck;
+        int cardsUsed = 0;
+
+        if (cardsUsed == testDeck.size()){
+            throw new IllegalStateException("No more cards left");
+        }
+        cardsUsed = cardsUsed + 1;
+
+        int testDeckSize = testDeck.size() - cardsUsed;
+
+        assertEquals(51, testDeckSize);
+    }
+
+    @Test
+    void cardsLeftTest(){
+        Deck.generateDeck();
+        testDeck = Deck.deck;
+        int cardsUsed = 1;
+        int cardsLeft = testDeck.size() - cardsUsed;
+
+
+    }
 }
