@@ -58,6 +58,7 @@ public class DeckTest {
     }
 
     @Test
+    @DisplayName("Deals a number of cards (currently 1)")
     void dealCardTest() {
         Deck.generateDeck();
         testDeck = Deck.deck;
@@ -68,18 +69,24 @@ public class DeckTest {
         }
         cardsUsed = cardsUsed + 1;
 
-        int testDeckSize = testDeck.size() - cardsUsed;
-
-        assertEquals(51, testDeckSize);
+        assertEquals(1, cardsUsed);
     }
 
     @Test
+    @DisplayName("See how many cards are left in the deck")
     void cardsLeftTest(){
         Deck.generateDeck();
         testDeck = Deck.deck;
-        int cardsUsed = 1;
-        int cardsLeft = testDeck.size() - cardsUsed;
 
+        // exchange for dealCard() method
+        int cardsUsed = 0;
+        if (cardsUsed == testDeck.size()){
+            throw new IllegalStateException("No more cards left");
+        }
+        cardsUsed = cardsUsed + 1;
+
+        int cardsLeft = testDeck.size() - cardsUsed;
+        assertEquals(51, cardsLeft);
 
     }
 }
