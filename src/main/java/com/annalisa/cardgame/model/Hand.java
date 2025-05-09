@@ -6,7 +6,7 @@ public class Hand {
 
     public static ArrayList<Card> deck;
     public static ArrayList<Card> cardsDealt;
-    public static ArrayList<Card> hand;
+    public static ArrayList<Card> hand = new ArrayList<>();
 
     public static void printHand() {
         if (hand == null) {
@@ -17,7 +17,6 @@ public class Hand {
                 System.out.println(card.getValueAsString(card.getValue()) + " of " + card.getSuitAsString(card.getSuit()));
             }
         }
-
     }
 
     /* use in takeCard()

@@ -38,7 +38,6 @@ public class Deck {
         for(int i = 0; i < n; i++) {
             cardsDealt.add(deck.remove(0));
         }
-
     }
 
     public static void cardsLeft() {

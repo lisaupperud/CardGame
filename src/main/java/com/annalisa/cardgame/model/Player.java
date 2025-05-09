@@ -1,6 +1,9 @@
 package com.annalisa.cardgame.model;
 
+import java.util.ArrayList;
+
 public class Player {
 
-    // private Hand hand;
+    public static ArrayList<Card> playerHand = new ArrayList<>();
+
 }
