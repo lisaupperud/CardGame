@@ -14,6 +14,8 @@ public class HandTest {
     ArrayList<Card> testCardsDealt;
     ArrayList<Card> testHand;
     ArrayList<Card> testPlayerHand;
+    Hand handObject;
+    Player player = new Player("A");
 
     @BeforeEach
     @DisplayName("Generate test deck before each test")
@@ -28,9 +30,8 @@ public class HandTest {
     void printHandTest() {
         testDeck = Deck.deck;
         testCardsDealt = Deck.cardsDealt;
-        testHand = Player.hand;
+        testHand = player.hand.hand;
         testHand.addAll(testCardsDealt);
-        Hand.printHand();
         assertEquals(10, testHand.size());
     }
 
@@ -39,7 +40,7 @@ public class HandTest {
     void takeCardFromDeckTest() {
         int n = 1;
         testDeck = Deck.deck;
-        testHand = Player.hand;
+        testHand = player.getHand().hand;
 
         if (testDeck.isEmpty()) {
             throw new IllegalStateException("No more cards left");

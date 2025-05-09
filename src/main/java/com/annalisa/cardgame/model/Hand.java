@@ -6,28 +6,38 @@ public class Hand {
 
     public static ArrayList<Card> deck;
     public static ArrayList<Card> cardsDealt;
-    // public static ArrayList<Card> hand = new ArrayList<>();
+    public ArrayList<Card> hand = new ArrayList<>();
+    // TODO - player consists of one hand, one hand is dependent on a list of cards. Implement hand in Player class
 
-    public static void printHand() {
-        if (Player.hand == null) {
+    public Hand() {
+        hand = new ArrayList<>();
+    }
+
+    public ArrayList<Card> getHand() {
+        return hand;
+    }
+
+
+    public void printHand(Player player) {
+        if (player.hand == null) {
             System.out.println("Your hand is empty");
         }
         else {
-            for (Card card : Player.hand) {
+            for (Card card : player.hand.hand) {
                 System.out.println(card.getValueAsString(card.getValue()) + " of " + card.getSuitAsString(card.getSuit()));
             }
         }
     }
 
 
-    public static void takeCardFromDeck(int n) {
+    public void takeCardFromDeck(int n, Player player) {
 
         if (Deck.deck.isEmpty()) {
             throw new IllegalStateException("No more cards left");
         }
 
         for(int i = 0; i < n; i++) {
-            Player.hand.add(Deck.deck.remove(0));
+            player.hand.hand.add(Deck.deck.remove(0));
         }
 
     }

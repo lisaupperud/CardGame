@@ -4,13 +4,25 @@ import java.util.ArrayList;
 
 public class Player {
 
-    public static String name;
-    public static ArrayList<Card> hand = new ArrayList<>();
+    public String name;
+    //public ArrayList<Card> hand;
+    public Hand hand;
 
 
-    public Player(String name, ArrayList<Card> hand) {
+    public Player(String name) {
         this.name = name;
-        this.hand = hand;
+        hand = new Hand();
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public Hand getHand() {
+        return hand;
+    }
+
+    public void setHand(Hand hand) {
+        this.hand = hand;
+    }
 }

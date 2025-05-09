@@ -6,7 +6,7 @@ import com.annalisa.cardgame.model.Player;
 
 public class Main {
     public static void main(String[] args) {
-        Deck deck = new Deck();
+        /*Deck deck = new Deck();
         System.out.println("GENERATE DECK:");
         deck.generateDeck();
         System.out.println("-----------------------------");
@@ -29,6 +29,6 @@ public class Main {
         Hand.takeCardFromDeck(10);
         System.out.println("Hand size: " + Player.hand.size());
         Hand.printHand();
-        Deck.cardsLeft();
+        Deck.cardsLeft();*/
     }
 }
