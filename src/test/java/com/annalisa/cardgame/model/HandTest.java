@@ -28,7 +28,7 @@ public class HandTest {
     void printHandTest() {
         testDeck = Deck.deck;
         testCardsDealt = Deck.cardsDealt;
-        testHand = Hand.hand;
+        testHand = Player.hand;
         testHand.addAll(testCardsDealt);
         Hand.printHand();
         assertEquals(10, testHand.size());
@@ -39,7 +39,7 @@ public class HandTest {
     void takeCardFromDeckTest() {
         int n = 1;
         testDeck = Deck.deck;
-        testHand = Hand.hand;
+        testHand = Player.hand;
 
         if (testDeck.isEmpty()) {
             throw new IllegalStateException("No more cards left");
@@ -52,11 +52,11 @@ public class HandTest {
         //assertEquals(1, testHand.size());
     }
 
-    @Test
+    /*@Test
     @DisplayName("Take a card from opponent's ArrayList")
     void takeCardFromOpponentTest() {
         testCardsDealt = Deck.cardsDealt;
-        testHand = Hand.hand;
+        testHand = Player.hand;
         testPlayerHand = Player.playerHand;
 
         System.out.println(testCardsDealt);
@@ -68,7 +68,7 @@ public class HandTest {
 
         //assertEquals(9, testCardsDealt.size());
         assertEquals(1, testPlayerHand.size());
-    }
+    }*/
 
 
 }

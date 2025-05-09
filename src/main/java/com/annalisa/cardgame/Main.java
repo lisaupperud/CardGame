@@ -2,6 +2,7 @@ package com.annalisa.cardgame;
 
 import com.annalisa.cardgame.model.Deck;
 import com.annalisa.cardgame.model.Hand;
+import com.annalisa.cardgame.model.Player;
 
 public class Main {
     public static void main(String[] args) {
@@ -23,5 +24,11 @@ public class Main {
         Deck.cardsLeft();
         System.out.println("PRINT HAND");
         Hand.printHand();
+        System.out.println("-------------------------------");
+        System.out.println("TAKE CARD FROM DECK");
+        Hand.takeCardFromDeck(10);
+        System.out.println("Hand size: " + Player.hand.size());
+        Hand.printHand();
+        Deck.cardsLeft();
     }
 }
