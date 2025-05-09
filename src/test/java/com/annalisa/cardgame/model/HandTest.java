@@ -28,11 +28,12 @@ public class HandTest {
     void printHandTest() {
         testDeck = Deck.deck;
         testCardsDealt = Deck.cardsDealt;
-        System.out.println("cardsDealt size: " + testCardsDealt.size());
+        System.out.println("testCardsDealt size: " + testCardsDealt.size());
 
         testHand = Hand.hand;
-        System.out.println(testHand.size());
+        System.out.println("testHand size: " + testHand);
         testHand.addAll(testCardsDealt);
+        System.out.println("testCardsDealt size: " + testCardsDealt);
 
         Hand.printHand();
 
