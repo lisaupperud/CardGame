@@ -1,13 +1,9 @@
 package com.annalisa.cardgame.model;
 
-import java.util.ArrayList;
-
 public class Player {
 
     public String name;
-    //public ArrayList<Card> hand;
     public Hand hand;
-
 
     public Player(String name) {
         this.name = name;
@@ -16,6 +12,10 @@ public class Player {
 
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Hand getHand() {

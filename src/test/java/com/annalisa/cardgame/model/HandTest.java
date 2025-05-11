@@ -13,63 +13,61 @@ public class HandTest {
     ArrayList<Card> testDeck;
     ArrayList<Card> testCardsDealt;
     ArrayList<Card> testHand;
-    ArrayList<Card> testPlayerHand;
-    Hand handObject;
+    ArrayList<Card> testHandTwo;
+    Hand handObject = new Hand();
     Player player = new Player("A");
+    Player opponent = new Player("B");
 
     @BeforeEach
     @DisplayName("Generate test deck before each test")
     void setUp() {
         Deck.generateDeck();
-        Deck.shuffleDeck();
+        //Deck.shuffleDeck();
         Deck.dealCard(10);
     }
 
     @Test
-    @DisplayName("Print hand array")
+    @DisplayName("Print cards in Player's hand")
     void printHandTest() {
         testDeck = Deck.deck;
         testCardsDealt = Deck.cardsDealt;
-        testHand = player.hand.hand;
+        testHand = player.hand.handArray;
         testHand.addAll(testCardsDealt);
+        handObject.printHand(player);
+        /*
+         * FRÅGA KRISTOFFER OM ASSERT PÅ DEN HÄR
+         * */
         assertEquals(10, testHand.size());
     }
 
     @Test
     @DisplayName("Take a card from the Deck Arraylist")
     void takeCardFromDeckTest() {
-        int n = 1;
         testDeck = Deck.deck;
-        testHand = player.getHand().hand;
+        testHand = player.getHand().handArray;
+        handObject.takeCardFromDeck(player);
 
-        if (testDeck.isEmpty()) {
-            throw new IllegalStateException("No more cards left");
-        }
-
-        for(int i = 0; i < n; i++) {
-            testHand.add(testDeck.remove(0));
-        }
         assertEquals(41, testDeck.size());
-        //assertEquals(1, testHand.size());
+        assertEquals(1, testHand.size());
     }
 
-    /*@Test
+    @Test
     @DisplayName("Take a card from opponent's ArrayList")
     void takeCardFromOpponentTest() {
+        testDeck = Deck.deck;
         testCardsDealt = Deck.cardsDealt;
-        testHand = Player.hand;
-        testPlayerHand = Player.playerHand;
+        testHand = player.getHand().handArray;
+        testHandTwo = opponent.getHand().handArray;
 
-        System.out.println(testCardsDealt);
+        handObject.takeCardFromDeck(player);
+        handObject.takeCardFromDeck(player);
+        //System.out.println(testHand);
+        handObject.takeCardFromOpponent(opponent, player, 0);
+        //System.out.println(testHand);
+        //System.out.println(testHandTwo);
 
-        testPlayerHand.add(testCardsDealt.remove(0));
-
-        System.out.println(testCardsDealt);
-        System.out.println(testPlayerHand);
-
-        //assertEquals(9, testCardsDealt.size());
-        assertEquals(1, testPlayerHand.size());
-    }*/
-
+        assertEquals(1, testHand.size());
+        assertEquals(1, testHandTwo.size());
+    }
 
 }

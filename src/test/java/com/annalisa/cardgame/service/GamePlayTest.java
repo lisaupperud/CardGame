@@ -21,7 +21,6 @@ public class GamePlayTest {
     Player player1;
     Player player2;
 
-
     @BeforeEach
     @DisplayName("Generate test deck before each test")
     void setUp() {
@@ -32,17 +31,16 @@ public class GamePlayTest {
     @Test
     @DisplayName("Players hands should be separate ArrayList")
     void playerHandInstantiateTest() {
-
         player1 = new Player("A");
         player2 = new Player("B");
         assertNotSame(playerOneHand, playerTwoHand);
     }
 
-    /*@Test
-    @DisplayName("Intended cards")
-    void playerHandContent() {
+    @Test
+    @DisplayName("Checks index of specific card")
+    void findSpecificCardTest() {
         testDeck = Deck.deck;
-        player1.hand.add(testDeck.get(0));
-    }*/
+
+    }
 
 }
