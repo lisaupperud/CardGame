@@ -15,6 +15,9 @@ import java.util.ArrayList;
 
 public class GamePlayTest {
 
+    // TODO - findSpecificCard we must have index of specific card --> return index in method ?
+    // TODO - remove all static stuff
+
     ArrayList<Card> testDeck;
     Hand playerOneHand;
     Hand playerTwoHand;
@@ -40,6 +43,22 @@ public class GamePlayTest {
     @DisplayName("Checks index of specific card")
     void findSpecificCardTest() {
         testDeck = Deck.deck;
+        boolean matchingCardFound = false;
+        int suit = 2;
+        int value = 7;
+
+        for (Card card : testDeck) {
+            if (card.getSuit() == suit && card.getValue() == value) {
+                matchingCardFound = true;
+                System.out.println("Card found: " + card);
+                break;
+            }
+        }
+        if (!matchingCardFound) {
+            System.out.println("Card not found");
+        }
+
+        assertTrue(matchingCardFound);
 
     }
 
