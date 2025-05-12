@@ -5,11 +5,13 @@ import java.util.Collections;
 import java.util.Random;
 
 public class Deck {
-    public ArrayList<Card> deck;
+    public ArrayList<Card> deck = new ArrayList<>();
+    ;
     public ArrayList<Card> cardsDealt;
+    public boolean matchingCardFound;
+    public int indexOfCard;
 
     public void generateDeck() {
-        deck = new ArrayList<>();
         for (int i = 1; i <= 13; i++) {
             deck.add(new Card(0, i));
             deck.add(new Card(1, i));
@@ -35,7 +37,7 @@ public class Deck {
             throw new IllegalStateException("No more cards left");
         }
 
-        for(int i = 0; i < n; i++) {
+        for (int i = 0; i < n; i++) {
             cardsDealt.add(deck.remove(0));
         }
     }
@@ -44,5 +46,21 @@ public class Deck {
         System.out.println(deck.size());
     }
 
+    public void findSpecificCard(int suit, int value) {
+        matchingCardFound = false;
 
+        for (Card card : deck) {
+            if (card.getSuit() == suit && card.getValue() == value) {
+                matchingCardFound = true;
+                System.out.println("Card found: " + card.getSuitAsString(suit) + " " + card.getValueAsString(value));
+                indexOfCard = deck.indexOf(card);
+                break;
+            }
+        }
+
+        if (!matchingCardFound) {
+            System.out.println("Card not found");
+        }
+
+    }
 }

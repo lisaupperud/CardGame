@@ -1,5 +1,6 @@
 package com.annalisa.cardgame.model;
 
+import com.annalisa.cardgame.service.GamePlay;
 import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -10,12 +11,17 @@ public class DeckTest {
 
     ArrayList<Card> testDeck;
     ArrayList<Card> testCardsDealt;
-    Deck cardDeck = new Deck();
+    Deck cardDeck;
+
+    @BeforeEach
+    void setUp() {
+        cardDeck = new Deck();
+        cardDeck.generateDeck();
+    }
 
     @Test
     @DisplayName("Generate an unshuffled deck of cards")
     void generateDeckTest() {
-        cardDeck.generateDeck();
         testDeck = cardDeck.deck;
         assertEquals(52, testDeck.size());
     }
@@ -23,7 +29,6 @@ public class DeckTest {
     @Test
     @DisplayName("Generate a shuffled deck of cards")
     void shuffleDeckTest() {
-        cardDeck.generateDeck();
         ArrayList<Card> unshuffledDeck = new ArrayList<>(cardDeck.deck);
         testDeck = cardDeck.deck;
         cardDeck.shuffleDeck();
@@ -45,7 +50,6 @@ public class DeckTest {
     @Test
     @DisplayName("Print the entire deck of cards")
     void printDeckTest() {
-        cardDeck.generateDeck();
         testDeck = cardDeck.deck;
         cardDeck.printDeck();
 
@@ -55,7 +59,6 @@ public class DeckTest {
     @Test
     @DisplayName("Deals a number of cards (currently 7)")
     void dealCardTest() {
-        cardDeck.generateDeck();
         cardDeck.dealCard(7);
         testDeck = cardDeck.deck;
         testCardsDealt = cardDeck.cardsDealt;
@@ -65,12 +68,23 @@ public class DeckTest {
     @Test
     @DisplayName("See how many cards are left in the deck")
     void cardsLeftTest() {
-        cardDeck.generateDeck();
         cardDeck.dealCard(10);
         testDeck = cardDeck.deck;
 
         int cardsLeft = testDeck.size();
         assertEquals(42, cardsLeft);
+
+    }
+
+    @Test
+    @DisplayName("Checks index of specific card")
+    void findSpecificCardTest() {
+        testDeck = cardDeck.deck;
+        int suit = 2;
+        int value = 7;
+        cardDeck.findSpecificCard(suit, value);
+
+        assertTrue(cardDeck.matchingCardFound);
 
     }
 }
