@@ -1,6 +1,5 @@
 package com.annalisa.cardgame.model;
 
-import com.annalisa.cardgame.service.GamePlay;
 import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -10,8 +9,8 @@ import java.util.ArrayList;
 public class DeckTest {
 
     ArrayList<Card> testDeck;
-    ArrayList<Card> testCardsDealt;
     Deck cardDeck;
+    Player player = new Player("A");
 
     @BeforeEach
     void setUp() {
@@ -59,16 +58,15 @@ public class DeckTest {
     @Test
     @DisplayName("Deals a number of cards (currently 7)")
     void dealCardTest() {
-        cardDeck.dealCard(7);
+        cardDeck.dealCard(7, player);
         testDeck = cardDeck.deck;
-        testCardsDealt = cardDeck.cardsDealt;
-        assertEquals(7, testCardsDealt.size());
+        assertEquals(7, player.hand.handArray.size());
     }
 
     @Test
     @DisplayName("See how many cards are left in the deck")
     void cardsLeftTest() {
-        cardDeck.dealCard(10);
+        cardDeck.dealCard(10, player);
         testDeck = cardDeck.deck;
 
         int cardsLeft = testDeck.size();
@@ -85,6 +83,5 @@ public class DeckTest {
         cardDeck.findSpecificCard(suit, value);
 
         assertTrue(cardDeck.matchingCardFound);
-
     }
 }

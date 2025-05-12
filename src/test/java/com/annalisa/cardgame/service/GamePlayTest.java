@@ -15,12 +15,6 @@ import java.util.ArrayList;
 
 public class GamePlayTest {
 
-    // TODO - findSpecificCard we must have index of specific card --> return index in method ?
-
-
-    ArrayList<Card> testDeck;
-    Hand playerOneHand;
-    Hand playerTwoHand;
     Player player1;
     Player player2;
     Deck cardDeck;
@@ -36,12 +30,8 @@ public class GamePlayTest {
     @Test
     @DisplayName("Players hands should be separate ArrayList")
     void playerHandInstantiateTest() {
-        playerOneHand = new Hand();
-        playerTwoHand = new Hand();
         player1 = new Player("A");
         player2 = new Player("B");
-        assertNotSame(playerOneHand, playerTwoHand);
+        assertNotSame(player1.hand.handArray, player2.hand.handArray);
     }
-
-
 }

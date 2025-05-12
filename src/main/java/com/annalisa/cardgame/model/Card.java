@@ -16,7 +16,6 @@ public class Card {
     final int suit;
     final int value;
 
-    // works as a constructor to create a card and failsafe
     public Card(int theSuit, int theValue) {
         if (theSuit != SPADES && theSuit != HEARTS && theSuit != DIAMONDS && theSuit != CLUBS) {
             throw new IllegalArgumentException("Invalid Suit");
@@ -28,7 +27,6 @@ public class Card {
         value = theValue;
     }
 
-    // getters for suit and value
     public int getSuit() {
         return suit;
     }
@@ -45,7 +43,6 @@ public class Card {
             case 3 -> "Clubs";
             default -> throw new IllegalArgumentException("Invalid Suit");
         };
-
     }
 
     public String getValueAsString(int value) {
@@ -67,6 +64,4 @@ public class Card {
             default -> throw new IllegalArgumentException("Invalid Value");
         };
     }
-
-
 }

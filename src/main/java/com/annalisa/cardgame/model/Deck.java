@@ -6,8 +6,6 @@ import java.util.Random;
 
 public class Deck {
     public ArrayList<Card> deck = new ArrayList<>();
-    ;
-    public ArrayList<Card> cardsDealt;
     public boolean matchingCardFound;
     public int indexOfCard;
 
@@ -30,15 +28,13 @@ public class Deck {
         }
     }
 
-    public void dealCard(int n) {
-        cardsDealt = new ArrayList<>();
-
+    public void dealCard(int n, Player player) {
         if (deck.isEmpty()) {
             throw new IllegalStateException("No more cards left");
         }
 
         for (int i = 0; i < n; i++) {
-            cardsDealt.add(deck.remove(0));
+            player.hand.handArray.add(deck.remove(0));
         }
     }
 
@@ -61,6 +57,5 @@ public class Deck {
         if (!matchingCardFound) {
             System.out.println("Card not found");
         }
-
     }
 }

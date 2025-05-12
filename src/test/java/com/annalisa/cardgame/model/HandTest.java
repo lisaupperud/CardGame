@@ -11,7 +11,6 @@ import java.util.ArrayList;
 public class HandTest {
 
     ArrayList<Card> testDeck;
-    ArrayList<Card> testCardsDealt;
     ArrayList<Card> testHand;
     ArrayList<Card> testHandTwo;
     Hand handObject = new Hand();
@@ -25,16 +24,14 @@ public class HandTest {
         cardDeck = new Deck();
         cardDeck.generateDeck();
         //Deck.shuffleDeck();
-        cardDeck.dealCard(10);
+        cardDeck.dealCard(10, player);
     }
 
     @Test
     @DisplayName("Print cards in Player's hand")
     void printHandTest() {
         testDeck = cardDeck.deck;
-        testCardsDealt = cardDeck.cardsDealt;
         testHand = player.hand.handArray;
-        testHand.addAll(testCardsDealt);
         handObject.printHand(player);
         /*
          * FRÅGA KRISTOFFER OM ASSERT PÅ DEN HÄR
@@ -44,32 +41,30 @@ public class HandTest {
 
     @Test
     @DisplayName("Take a card from the Deck Arraylist")
-    void takeCardFromDeckTest() {
+    void takeOneCardFromDeckTest() {
         testDeck = cardDeck.deck;
         testHand = player.getHand().handArray;
-        handObject.takeCardFromDeck(player, cardDeck);
+        handObject.takeOneCardFromDeck(player, cardDeck);
 
         assertEquals(41, testDeck.size());
-        assertEquals(1, testHand.size());
+        assertEquals(11, testHand.size());
     }
 
     @Test
     @DisplayName("Take a card from opponent's ArrayList")
-    void takeCardFromOpponentTest() {
+    void takeOneCardFromOpponentTest() {
         testDeck = cardDeck.deck;
-        testCardsDealt = cardDeck.cardsDealt;
         testHand = player.getHand().handArray;
         testHandTwo = opponent.getHand().handArray;
 
-        handObject.takeCardFromDeck(player, cardDeck);
-        handObject.takeCardFromDeck(player, cardDeck);
+        handObject.takeOneCardFromDeck(player, cardDeck);
+        handObject.takeOneCardFromDeck(player, cardDeck);
         //System.out.println(testHand);
-        handObject.takeCardFromOpponent(opponent, player, 0);
+        handObject.takeOneCardFromOpponent(opponent, player, 0);
         //System.out.println(testHand);
         //System.out.println(testHandTwo);
 
-        assertEquals(1, testHand.size());
+        assertEquals(11, testHand.size());
         assertEquals(1, testHandTwo.size());
     }
-
 }

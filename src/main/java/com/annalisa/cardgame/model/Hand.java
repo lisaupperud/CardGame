@@ -4,10 +4,7 @@ import java.util.ArrayList;
 
 public class Hand {
 
-    public static ArrayList<Card> deck;
-    public static ArrayList<Card> cardsDealt;
     public ArrayList<Card> handArray;
-    // TODO - player consists of one hand, one hand is dependent on a list of cards. Implement hand in Player class
 
     public Hand() {
         handArray = new ArrayList<>();
@@ -28,7 +25,7 @@ public class Hand {
         }
     }
 
-    public void takeCardFromDeck(Player player, Deck deck) {
+    public void takeOneCardFromDeck(Player player, Deck deck) {
         if (deck.deck.isEmpty()) {
             throw new IllegalStateException("No more cards left");
         }
@@ -36,7 +33,7 @@ public class Hand {
         player.hand.handArray.add(deck.deck.remove(0));
     }
 
-    public void takeCardFromOpponent(Player player, Player opponent, int index) {
+    public void takeOneCardFromOpponent(Player player, Player opponent, int index) {
         if (opponent.hand == null) {
             throw new IllegalStateException("Opponent has no cards left");
         }
