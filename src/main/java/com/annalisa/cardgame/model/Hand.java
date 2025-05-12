@@ -28,12 +28,12 @@ public class Hand {
         }
     }
 
-    public void takeCardFromDeck(Player player) {
-        if (Deck.deck.isEmpty()) {
+    public void takeCardFromDeck(Player player, Deck deck) {
+        if (deck.deck.isEmpty()) {
             throw new IllegalStateException("No more cards left");
         }
 
-        player.hand.handArray.add(Deck.deck.remove(0));
+        player.hand.handArray.add(deck.deck.remove(0));
     }
 
     public void takeCardFromOpponent(Player player, Player opponent, int index) {

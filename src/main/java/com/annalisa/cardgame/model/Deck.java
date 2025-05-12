@@ -5,10 +5,10 @@ import java.util.Collections;
 import java.util.Random;
 
 public class Deck {
-    public static ArrayList<Card> deck;
-    public static ArrayList<Card> cardsDealt;
+    public ArrayList<Card> deck;
+    public ArrayList<Card> cardsDealt;
 
-    public static void generateDeck() {
+    public void generateDeck() {
         deck = new ArrayList<>();
         for (int i = 1; i <= 13; i++) {
             deck.add(new Card(0, i));
@@ -18,17 +18,17 @@ public class Deck {
         }
     }
 
-    public static void shuffleDeck() {
+    public void shuffleDeck() {
         Collections.shuffle(deck, new Random());
     }
 
-    public static void printDeck() {
+    public void printDeck() {
         for (Card card : deck) {
             System.out.println(card.getValueAsString(card.getValue()) + " of " + card.getSuitAsString(card.getSuit()));
         }
     }
 
-    public static void dealCard(int n) {
+    public void dealCard(int n) {
         cardsDealt = new ArrayList<>();
 
         if (deck.isEmpty()) {
@@ -40,7 +40,7 @@ public class Deck {
         }
     }
 
-    public static void cardsLeft() {
+    public void cardsLeft() {
         System.out.println(deck.size());
     }
 

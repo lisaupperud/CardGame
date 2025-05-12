@@ -23,17 +23,21 @@ public class GamePlayTest {
     Hand playerTwoHand;
     Player player1;
     Player player2;
+    Deck cardDeck;
 
     @BeforeEach
     @DisplayName("Generate test deck before each test")
     void setUp() {
-        Deck.generateDeck();
+        cardDeck = new Deck();
+        cardDeck.generateDeck();
         //Deck.shuffleDeck();
     }
 
     @Test
     @DisplayName("Players hands should be separate ArrayList")
     void playerHandInstantiateTest() {
+        playerOneHand = new Hand();
+        playerTwoHand = new Hand();
         player1 = new Player("A");
         player2 = new Player("B");
         assertNotSame(playerOneHand, playerTwoHand);
@@ -42,7 +46,7 @@ public class GamePlayTest {
     @Test
     @DisplayName("Checks index of specific card")
     void findSpecificCardTest() {
-        testDeck = Deck.deck;
+        testDeck = cardDeck.deck;
         boolean matchingCardFound = false;
         int suit = 2;
         int value = 7;

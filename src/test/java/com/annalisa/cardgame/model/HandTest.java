@@ -17,20 +17,22 @@ public class HandTest {
     Hand handObject = new Hand();
     Player player = new Player("A");
     Player opponent = new Player("B");
+    Deck cardDeck;
 
     @BeforeEach
     @DisplayName("Generate test deck before each test")
     void setUp() {
-        Deck.generateDeck();
+        cardDeck = new Deck();
+        cardDeck.generateDeck();
         //Deck.shuffleDeck();
-        Deck.dealCard(10);
+        cardDeck.dealCard(10);
     }
 
     @Test
     @DisplayName("Print cards in Player's hand")
     void printHandTest() {
-        testDeck = Deck.deck;
-        testCardsDealt = Deck.cardsDealt;
+        testDeck = cardDeck.deck;
+        testCardsDealt = cardDeck.cardsDealt;
         testHand = player.hand.handArray;
         testHand.addAll(testCardsDealt);
         handObject.printHand(player);
@@ -43,9 +45,9 @@ public class HandTest {
     @Test
     @DisplayName("Take a card from the Deck Arraylist")
     void takeCardFromDeckTest() {
-        testDeck = Deck.deck;
+        testDeck = cardDeck.deck;
         testHand = player.getHand().handArray;
-        handObject.takeCardFromDeck(player);
+        handObject.takeCardFromDeck(player, cardDeck);
 
         assertEquals(41, testDeck.size());
         assertEquals(1, testHand.size());
@@ -54,13 +56,13 @@ public class HandTest {
     @Test
     @DisplayName("Take a card from opponent's ArrayList")
     void takeCardFromOpponentTest() {
-        testDeck = Deck.deck;
-        testCardsDealt = Deck.cardsDealt;
+        testDeck = cardDeck.deck;
+        testCardsDealt = cardDeck.cardsDealt;
         testHand = player.getHand().handArray;
         testHandTwo = opponent.getHand().handArray;
 
-        handObject.takeCardFromDeck(player);
-        handObject.takeCardFromDeck(player);
+        handObject.takeCardFromDeck(player, cardDeck);
+        handObject.takeCardFromDeck(player, cardDeck);
         //System.out.println(testHand);
         handObject.takeCardFromOpponent(opponent, player, 0);
         //System.out.println(testHand);
