@@ -6,6 +6,10 @@ public class ScannerUtility {
 
     private static final Scanner sc = new Scanner(System.in);
 
+    public static String scanString() {
+        return sc.nextLine().toLowerCase();
+    }
+
     public static int scanInt() {
         return sc.nextInt();
     }

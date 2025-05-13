@@ -1,7 +1,10 @@
 package com.annalisa.cardgame.model;
 
+import com.annalisa.cardgame.util.ScannerUtility;
+
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Objects;
 
 public class Hand {
 
@@ -35,18 +38,54 @@ public class Hand {
 
     public void takeOneCardFromDeck(Player player, Deck deck) {
         if (deck.deck.isEmpty()) {
-            throw new IllegalStateException("No more cards left");
+            throw new IllegalStateException("No more cards left in the deck");
         }
-
         player.hand.handArray.add(deck.deck.remove(0));
     }
 
-    public void takeOneCardFromOpponent(Player player, Player opponent, int index) {
+    public void takeOneCardFromOpponent(Player player, Player opponent) {
         if (opponent.hand == null) {
-            throw new IllegalStateException("Opponent has no cards left");
+            System.out.println("Opponent has no cards left");
+            return;
+        }
+        int chosenValue = ScannerUtility.scanInt();
+        boolean cardTaken = false;
+
+        // Loop through the opponent's hand to find cards with the chosen value
+        for (int i = 0; i < opponent.hand.handArray.size(); i++) {
+            Card card = opponent.hand.handArray.get(i);
+
+            // Check if the card's value matches the chosen value
+            if (card.getValue() == chosenValue) {
+                // Add the card to the player's hand
+                player.hand.handArray.add(card);
+                // Remove the card from the opponent's hand
+                opponent.hand.handArray.remove(i);
+                i--; // Adjust the index to account for the removed card
+                cardTaken = true;
+                //System.out.println("You took card with value: " + chosenValue);
+                System.out.println("You took the following card: " + card.getValueAsString(chosenValue) + " of " + card.getSuitAsString(card.getSuit()));
+            }
         }
 
-        player.hand.handArray.add(opponent.hand.handArray.remove(index));
+        // If no cards with the chosen value were found
+        if (!cardTaken) {
+            System.out.println("No cards with value " + chosenValue + " were found in opponent's hand.");
+        }
+
+        /*
+        for (Integer cardValues : player.hand.uniqueValuesOnHand) {
+            System.out.println(cardValues);
+            if (Objects.equals(chosenValue, cardValues)) {
+                player.hand.handArray.add(opponent.hand.handArray.remove());
+                System.out.println("You took cards " + chosenValue);
+                break;
+            }
+        }*/
+
+
+
+
     }
 
     public void removeFourMatchingCards(Player player) {
@@ -70,7 +109,7 @@ public class Hand {
         }
     }
 
-    public void printIndividualValues(Player player) {
+    public HashSet printIndividualValues(Player player) {
         valuesOnHand = new ArrayList<>();
 
         for (Card card : player.hand.handArray) {
@@ -79,7 +118,7 @@ public class Hand {
 
         uniqueValuesOnHand = new HashSet<>(valuesOnHand);
         System.out.println(uniqueValuesOnHand);
-
+        return uniqueValuesOnHand;
     }
 
 }
