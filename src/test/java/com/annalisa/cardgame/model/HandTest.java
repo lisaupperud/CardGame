@@ -7,6 +7,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class HandTest {
 
@@ -80,4 +81,24 @@ public class HandTest {
         assertEquals(4, testPointPile.size());
         assertEquals(6, testHand.size());
     }
+
+    @Test
+    @DisplayName("Check which individual values are in players hand Array")
+    void individualValuesTest() {
+        testHand = player.getHand().handArray;
+
+        ArrayList<Integer> valuesOnHand = new ArrayList<>();
+
+        for (Card card : testHand) {
+            valuesOnHand.add(card.getValue());
+        }
+
+        HashSet<Integer> uniqueValuesOnHand = new HashSet<>(valuesOnHand);
+        System.out.println(testHand);
+        System.out.println(uniqueValuesOnHand);
+
+
+        assertEquals(3, uniqueValuesOnHand.size());
+    }
+
 }
