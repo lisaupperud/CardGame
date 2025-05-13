@@ -17,6 +17,7 @@ public class HandTest {
     Player player = new Player("A");
     Player opponent = new Player("B");
     Deck cardDeck;
+    ArrayList<Card> pointPile;
 
     @BeforeEach
     @DisplayName("Generate test deck before each test")
@@ -66,5 +67,34 @@ public class HandTest {
 
         assertEquals(11, testHand.size());
         assertEquals(1, testHandTwo.size());
+    }
+
+    @Test
+    @DisplayName("Remove matching cards from Hand, put into points pile")
+    void removeFourMatchingCardsTest() {
+        pointPile = new ArrayList<>();
+        testHand = player.getHand().handArray;
+
+        for (int value = 1; value <= 13; value++) {
+            int count = 0;
+            for (Card card : testHand) {
+                if (card.getValue() == value) {
+                    count++;
+                }
+            }
+
+            if (count == 4) {
+                for (Card card : testHand) {
+                    if (card.getValue() == value) {
+                        pointPile.add(card);
+                    }
+                }
+                testHand.removeAll(pointPile);
+                break;
+
+            }
+        }
+        assertEquals(4, pointPile.size());
+        assertEquals(6, testHand.size());
     }
 }
