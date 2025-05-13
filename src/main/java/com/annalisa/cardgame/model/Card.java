@@ -64,4 +64,5 @@ public class Card {
             default -> throw new IllegalArgumentException("Invalid Value");
         };
     }
+
 }
