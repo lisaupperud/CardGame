@@ -1,11 +1,14 @@
 package com.annalisa.cardgame.model;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class Hand {
 
     public ArrayList<Card> handArray;
     public ArrayList<Card> pointPile;
+    public ArrayList<Integer> valuesOnHand;
+    public HashSet<Integer> uniqueValuesOnHand;
 
     public Hand() {
         handArray = new ArrayList<>();
@@ -65,6 +68,18 @@ public class Hand {
                 break;
             }
         }
+    }
+
+    public void printIndividualValues(Player player) {
+        valuesOnHand = new ArrayList<>();
+
+        for (Card card : player.hand.handArray) {
+            valuesOnHand.add(card.getValue());
+        }
+
+        uniqueValuesOnHand = new HashSet<>(valuesOnHand);
+        System.out.println(uniqueValuesOnHand);
+
     }
 
 }

@@ -15,6 +15,8 @@ public class HandTest {
     ArrayList<Card> testHand;
     ArrayList<Card> testHandTwo;
     ArrayList<Card> testPointPile;
+    ArrayList<Integer> testValuesOnHand;
+    HashSet<Integer> testUniqueValuesOnHand;
     Hand handObject = new Hand();
     Player player = new Player("A");
     Player opponent = new Player("B");
@@ -25,7 +27,6 @@ public class HandTest {
     void setUp() {
         cardDeck = new Deck();
         cardDeck.generateDeck();
-        //Deck.shuffleDeck();
         cardDeck.dealCard(10, player);
     }
 
@@ -84,21 +85,15 @@ public class HandTest {
 
     @Test
     @DisplayName("Check which individual values are in players hand Array")
-    void individualValuesTest() {
+    void printIndividualValuesTest() {
         testHand = player.getHand().handArray;
+        testValuesOnHand = handObject.valuesOnHand;
 
-        ArrayList<Integer> valuesOnHand = new ArrayList<>();
+        handObject.printIndividualValues(player);
 
-        for (Card card : testHand) {
-            valuesOnHand.add(card.getValue());
-        }
+        testUniqueValuesOnHand = handObject.uniqueValuesOnHand;
 
-        HashSet<Integer> uniqueValuesOnHand = new HashSet<>(valuesOnHand);
-        System.out.println(testHand);
-        System.out.println(uniqueValuesOnHand);
-
-
-        assertEquals(3, uniqueValuesOnHand.size());
+        assertEquals(3, testUniqueValuesOnHand.size());
     }
 
 }
