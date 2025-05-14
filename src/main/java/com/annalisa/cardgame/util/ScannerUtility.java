@@ -7,11 +7,19 @@ public class ScannerUtility {
     private static final Scanner sc = new Scanner(System.in);
 
     public static String scanString() {
-        return sc.nextLine().toLowerCase();
+        return sc.nextLine().toLowerCase().trim();
     }
 
     public static int scanInt() {
-        return sc.nextInt();
+        while (true) {
+            String input = sc.nextLine();
+            try {
+                return Integer.parseInt(input);
+            } catch (NumberFormatException e) {
+                System.out.println("Not a valid number – try again.");
+            }
+        }
+
     }
 
     public static void closeScanner() {

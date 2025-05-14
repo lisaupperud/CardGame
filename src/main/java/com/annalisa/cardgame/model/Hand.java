@@ -4,6 +4,7 @@ import com.annalisa.cardgame.util.ScannerUtility;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.InputMismatchException;
 
 public class Hand {
 
@@ -49,7 +50,18 @@ public class Hand {
             System.out.println("\nOpponent has no cards left");
             return;
         }
-        int chosenValue = ScannerUtility.scanInt();
+        int chosenValue = -1;
+
+        boolean running = true;
+        while (running) {
+            chosenValue = ScannerUtility.scanInt();
+            if (!player.hand.uniqueValuesOnHand.contains(chosenValue)) {
+                System.out.println("Not a valid value - choose from your hand");
+            } else {
+                running = false;
+            }
+        }
+
         cardTaken = false;
 
         for (int i = 0; i < opponent.hand.handArray.size(); i++) {

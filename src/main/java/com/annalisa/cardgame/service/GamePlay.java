@@ -42,6 +42,7 @@ public class GamePlay {
         System.out.println("\n" + player.getName() + ", here is your hand:");
         player.hand.printHand(player);
         System.out.println("\nChoose which of these values to ask your opponent for:");
+
         player.hand.printIndividualValues(player);
         player.hand.takeOneCardFromOpponent(player, opponent);
         if (!player.hand.cardTaken) {
