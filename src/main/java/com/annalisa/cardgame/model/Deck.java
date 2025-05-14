@@ -30,7 +30,7 @@ public class Deck {
 
     public void dealCard(int n, Player player) {
         if (deck.isEmpty()) {
-            throw new IllegalStateException("No more cards left");
+            throw new IllegalStateException("\nNo more cards left");
         }
 
         for (int i = 0; i < n; i++) {
@@ -48,14 +48,14 @@ public class Deck {
         for (Card card : deck) {
             if (card.getSuit() == suit && card.getValue() == value) {
                 matchingCardFound = true;
-                System.out.println("Card found: " + card.getSuitAsString(suit) + " " + card.getValueAsString(value));
+                System.out.println("\nCard found: " + card.getSuitAsString(suit) + " " + card.getValueAsString(value));
                 indexOfCard = deck.indexOf(card);
                 break;
             }
         }
 
         if (!matchingCardFound) {
-            System.out.println("Card not found");
+            System.out.println("\nCard not found");
         }
     }
 }

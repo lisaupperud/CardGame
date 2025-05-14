@@ -28,24 +28,26 @@ public class GamePlay {
         }
     }
 
-    private void initiatePlayers(){
+    private void initiatePlayers() {
         System.out.println("Welcome to Go Fish!, a two-player card game!\nPlayer 1, enter your name:");
         String player1Name = ScannerUtility.scanString();
         this.player1 = new Player(player1Name);
-        System.out.println("Player 2, enter your name:");
+        System.out.println("\nPlayer 2, enter your name:");
         String player2Name = ScannerUtility.scanString();
         this.player2 = new Player(player2Name);
-        System.out.println("Welcome, " + player1Name + " and " + player2Name + "!");
+        System.out.println("\nWelcome, " + player1Name + " and " + player2Name + "!");
     }
 
     private void turn(Player player, Player opponent) {
-        System.out.println(player + ", here is your hand:");
+        System.out.println("\n" + player.getName() + ", here is your hand:");
         player.hand.printHand(player);
-        System.out.println("Choose which of these values to ask your opponent for:");
+        System.out.println("\nChoose which of these values to ask your opponent for:");
         player.hand.printIndividualValues(player);
         player.hand.takeOneCardFromOpponent(player, opponent);
-
-        // TODO - städa upp takeOneCardFromOpponent, se till att Go Fish logik finns, lägg till kolla efter par
+        if (!player.hand.cardTaken) {
+            player.hand.takeOneCardFromDeck(player, deck);
+        }
+        player.hand.removeFourMatchingCards(player);
     }
 
 

@@ -4,7 +4,6 @@ import com.annalisa.cardgame.util.ScannerUtility;
 
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Objects;
 
 public class Hand {
 
@@ -12,6 +11,7 @@ public class Hand {
     public ArrayList<Card> pointPile;
     public ArrayList<Integer> valuesOnHand;
     public HashSet<Integer> uniqueValuesOnHand;
+    public boolean cardTaken;
 
     public Hand() {
         handArray = new ArrayList<>();
@@ -28,7 +28,7 @@ public class Hand {
 
     public void printHand(Player player) {
         if (player.hand == null) {
-            System.out.println("Your hand is empty");
+            System.out.println("\nYour hand is empty");
         } else {
             for (Card card : player.hand.handArray) {
                 System.out.println(card.getValueAsString(card.getValue()) + " of " + card.getSuitAsString(card.getSuit()));
@@ -38,54 +38,35 @@ public class Hand {
 
     public void takeOneCardFromDeck(Player player, Deck deck) {
         if (deck.deck.isEmpty()) {
-            throw new IllegalStateException("No more cards left in the deck");
+            throw new IllegalStateException("\nNo more cards left in the deck");
         }
-        player.hand.handArray.add(deck.deck.remove(0));
+        System.out.println("\nCard Taken from deck: " + deck.deck.getFirst().getValueAsString(deck.deck.getFirst().getValue()) + " of " + deck.deck.getFirst().getSuitAsString(deck.deck.getFirst().getSuit()));
+        player.hand.handArray.add(deck.deck.removeFirst());
     }
 
     public void takeOneCardFromOpponent(Player player, Player opponent) {
         if (opponent.hand == null) {
-            System.out.println("Opponent has no cards left");
+            System.out.println("\nOpponent has no cards left");
             return;
         }
         int chosenValue = ScannerUtility.scanInt();
-        boolean cardTaken = false;
+        cardTaken = false;
 
-        // Loop through the opponent's hand to find cards with the chosen value
         for (int i = 0; i < opponent.hand.handArray.size(); i++) {
             Card card = opponent.hand.handArray.get(i);
 
-            // Check if the card's value matches the chosen value
             if (card.getValue() == chosenValue) {
-                // Add the card to the player's hand
                 player.hand.handArray.add(card);
-                // Remove the card from the opponent's hand
                 opponent.hand.handArray.remove(i);
-                i--; // Adjust the index to account for the removed card
+                i--;
                 cardTaken = true;
-                //System.out.println("You took card with value: " + chosenValue);
-                System.out.println("You took the following card: " + card.getValueAsString(chosenValue) + " of " + card.getSuitAsString(card.getSuit()));
+                System.out.println("\nYou took the following card: " + card.getValueAsString(chosenValue) + " of " + card.getSuitAsString(card.getSuit()));
             }
         }
 
-        // If no cards with the chosen value were found
         if (!cardTaken) {
-            System.out.println("No cards with value " + chosenValue + " were found in opponent's hand.");
+            System.out.println("\nOpponent has no cards of value " + chosenValue + ".\nGO FISH!");
         }
-
-        /*
-        for (Integer cardValues : player.hand.uniqueValuesOnHand) {
-            System.out.println(cardValues);
-            if (Objects.equals(chosenValue, cardValues)) {
-                player.hand.handArray.add(opponent.hand.handArray.remove());
-                System.out.println("You took cards " + chosenValue);
-                break;
-            }
-        }*/
-
-
-
-
     }
 
     public void removeFourMatchingCards(Player player) {
@@ -104,6 +85,7 @@ public class Hand {
                     }
                 }
                 player.hand.handArray.removeAll(player.hand.pointPile);
+                System.out.println("Your four matching cards of " + value + " value have been removed from your hand.");
                 break;
             }
         }

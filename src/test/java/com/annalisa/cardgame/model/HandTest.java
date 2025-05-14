@@ -63,7 +63,7 @@ public class HandTest {
         handObject.takeOneCardFromDeck(player, cardDeck);
         handObject.takeOneCardFromDeck(player, cardDeck);
         //System.out.println(testHand);
-        handObject.takeOneCardFromOpponent(opponent, player, 0);
+        handObject.takeOneCardFromOpponent(opponent, player);
         //System.out.println(testHand);
         //System.out.println(testHandTwo);
 
