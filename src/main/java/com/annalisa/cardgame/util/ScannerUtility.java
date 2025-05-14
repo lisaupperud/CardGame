@@ -7,7 +7,8 @@ public class ScannerUtility {
     private static final Scanner sc = new Scanner(System.in);
 
     public static String scanString() {
-        return sc.nextLine().toLowerCase().trim();
+        //return sc.nextLine().toLowerCase().trim();
+        return sc.nextLine().trim();
     }
 
     public static int scanInt() {

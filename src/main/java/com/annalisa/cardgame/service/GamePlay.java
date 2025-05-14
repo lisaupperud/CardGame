@@ -9,7 +9,7 @@ public class GamePlay {
     private Player player2;
     private Deck deck;
 
-    public void startGame() {
+    public void runGame() {
         initiatePlayers();
         this.deck = new Deck();
         deck.generateDeck();
@@ -26,23 +26,25 @@ public class GamePlay {
             turn(player1, player2);
             turn(player2, player1);
         }
+        //comparePoints();
+        // ending sout?
+        //ScannerUtility.closeScanner();
     }
 
     private void initiatePlayers() {
-        System.out.println("Welcome to Go Fish!, a two-player card game!\nPlayer 1, enter your name:");
+        System.out.println("Welcome to Go Fish!, a two-player card game!\n\u001B[33mPlayer 1\u001B[0m, enter your name:");
         String player1Name = ScannerUtility.scanString();
         this.player1 = new Player(player1Name);
-        System.out.println("\nPlayer 2, enter your name:");
+        System.out.println("\n\u001B[33mPlayer 2\u001B[0m, enter your name:");
         String player2Name = ScannerUtility.scanString();
         this.player2 = new Player(player2Name);
-        System.out.println("\nWelcome, " + player1Name + " and " + player2Name + "!");
+        System.out.println("\nWelcome, \u001B[33m" + player1Name + "\u001B[0m and \u001B[33m" + player2Name + "\u001B[0m!");
     }
 
     private void turn(Player player, Player opponent) {
-        System.out.println("\n" + player.getName() + ", here is your hand:");
+        System.out.println("\n\u001B[33m" + player.getName() + "\u001B[0m, here is your hand:");
         player.hand.printHand(player);
         System.out.println("\nChoose which of these values to ask your opponent for:");
-
         player.hand.printIndividualValues(player);
         player.hand.takeOneCardFromOpponent(player, opponent);
         if (!player.hand.cardTaken) {
@@ -51,5 +53,6 @@ public class GamePlay {
         player.hand.removeFourMatchingCards(player);
     }
 
+    //private void comparePoints(Player player1, Player player2) {}
 
 }

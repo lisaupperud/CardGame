@@ -4,7 +4,6 @@ import com.annalisa.cardgame.util.ScannerUtility;
 
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.InputMismatchException;
 
 public class Hand {
 
@@ -27,6 +26,8 @@ public class Hand {
         return pointPile;
     }
 
+    //TODO - räcker det med player.hand == null? behöver vi inte också kolla om själva listan är tom?
+
     public void printHand(Player player) {
         if (player.hand == null) {
             System.out.println("\nYour hand is empty");
@@ -34,6 +35,24 @@ public class Hand {
             for (Card card : player.hand.handArray) {
                 System.out.println(card.getValueAsString(card.getValue()) + " of " + card.getSuitAsString(card.getSuit()));
             }
+            /*
+            *  // Sort the hand by suit first, then by value
+        player.hand.handArray.sort((card1, card2) -> {
+            if (card1.getSuit() != card2.getSuit()) {
+                return Integer.compare(card1.getSuit(), card2.getSuit());
+            } else {
+                return Integer.compare(card1.getValue(), card2.getValue());
+            }
+        });
+
+        // Print the sorted hand
+        for (Card card : player.hand.handArray) {
+            System.out.println(
+                card.getValueAsString(card.getValue()) + " of " +
+                card.getSuitAsString(card.getSuit())
+            );
+        }
+            * */
         }
     }
 
@@ -77,7 +96,7 @@ public class Hand {
         }
 
         if (!cardTaken) {
-            System.out.println("\nOpponent has no cards of value " + chosenValue + ".\nGO FISH!");
+            System.out.println("\nOpponent has no cards of value " + chosenValue + ".\n\u001B[34mGO FISH!\u001B[0m");
         }
     }
 
@@ -97,7 +116,7 @@ public class Hand {
                     }
                 }
                 player.hand.handArray.removeAll(player.hand.pointPile);
-                System.out.println("Your four matching cards of " + value + " value have been removed from your hand.");
+                System.out.println("Your four matching cards of value \u001B[31m" + value + "\u001B[0m have been removed from your hand.");
                 break;
             }
         }
@@ -111,6 +130,15 @@ public class Hand {
         }
 
         uniqueValuesOnHand = new HashSet<>(valuesOnHand);
+        /*
+        * Set<String> printableValues = new HashSet<>();
+    for (int value : uniqueValuesOnHand) {
+        printableValues.add(Card.getValueAsString(value));
+    }
+    System.out.println(printableValues);
+
+    return uniqueValuesOnHand;
+        * */
         System.out.println(uniqueValuesOnHand);
         return uniqueValuesOnHand;
     }
