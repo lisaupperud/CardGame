@@ -6,8 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.*;
 
 public class HandTest {
 
@@ -15,6 +14,7 @@ public class HandTest {
     ArrayList<Card> testHand;
     ArrayList<Card> testHandTwo;
     ArrayList<Card> testPointPile;
+    ArrayList<Card> testHandUnsorted;
     ArrayList<Integer> testValuesOnHand;
     HashSet<Integer> testUniqueValuesOnHand;
     Hand handObject = new Hand();
@@ -38,6 +38,35 @@ public class HandTest {
         handObject.printHand(player);
 
         assertEquals(10, testHand.size());
+    }
+
+    @Test
+    @DisplayName("Print a players hand in sorted order")
+    void printSortedHandTest() {
+        cardDeck.dealCard(10, opponent);
+        testHand = player.getHand().handArray;
+        testHandUnsorted = opponent.getHand().handArray;
+        Collections.shuffle(testHand, new Random());
+        Collections.shuffle(testHandUnsorted, new Random());
+
+        testHand.sort((card1, card2) -> {
+            // compare values
+            if (card1.getValue() != card2.getValue()) {
+                return Integer.compare(card1.getValue(), card2.getValue());
+            } else {
+                // if values are same - compare by suit
+                return Integer.compare(card1.getSuit(), card2.getSuit());
+            }
+        });
+
+        for (Card card : player.hand.handArray) {
+            System.out.println(
+                    card.getValueAsString(card.getValue()) + " of " +
+                            card.getSuitAsString(card.getSuit())
+            );
+        }
+
+        assertNotEquals(testHand, testHandUnsorted);
     }
 
     @Test
