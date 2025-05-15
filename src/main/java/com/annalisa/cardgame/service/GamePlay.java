@@ -27,8 +27,9 @@ public class GamePlay {
             turn(player2, player1);
         }
         //comparePoints();
-        // ending sout?
-        //ScannerUtility.closeScanner();
+
+        System.out.println("Game over! Thank you for playing!");
+        ScannerUtility.closeScanner();
     }
 
     private void initiatePlayers() {
@@ -41,16 +42,23 @@ public class GamePlay {
         System.out.println("\nWelcome, \u001B[33m" + player1Name + "\u001B[0m and \u001B[33m" + player2Name + "\u001B[0m!");
     }
 
+    // TODO - test that if (player.hand.handArray = null) functions as intended
+
     private void turn(Player player, Player opponent) {
         System.out.println("\n\u001B[33m" + player.getName() + "\u001B[0m, here is your hand:");
         player.hand.printHand(player);
-        System.out.println("\nChoose which of these values to ask your opponent for:");
-        player.hand.printIndividualValues(player);
-        player.hand.takeOneCardFromOpponent(player, opponent);
-        if (!player.hand.cardTaken) {
+        if (player.hand.handArray != null || player.hand.handArray.isEmpty()) {
+            System.out.println("\nChoose which of these values to ask your opponent for:");
+            player.hand.printIndividualValues(player);
+            player.hand.takeOneCardFromOpponent(player, opponent);
+            if (!player.hand.cardTaken) {
+                player.hand.takeOneCardFromDeck(player, deck);
+            }
+            player.hand.removeFourMatchingCards(player);
+        } else {
             player.hand.takeOneCardFromDeck(player, deck);
         }
-        player.hand.removeFourMatchingCards(player);
+
     }
 
     //private void comparePoints(Player player1, Player player2) {}

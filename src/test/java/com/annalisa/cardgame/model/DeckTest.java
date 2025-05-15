@@ -1,9 +1,7 @@
 package com.annalisa.cardgame.model;
 
 import org.junit.jupiter.api.*;
-
 import static org.junit.jupiter.api.Assertions.*;
-
 import java.util.ArrayList;
 
 public class DeckTest {

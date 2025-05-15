@@ -29,7 +29,7 @@ public class Deck {
     }
 
     public void dealCard(int n, Player player) {
-        if (deck.isEmpty()) {
+        if (deck.isEmpty() || deck == null) {
             throw new IllegalStateException("\nNo more cards left");
         }
 

@@ -26,10 +26,8 @@ public class Hand {
         return pointPile;
     }
 
-    //TODO - räcker det med player.hand == null? behöver vi inte också kolla om själva listan är tom?
-
     public void printHand(Player player) {
-        if (player.hand == null) {
+        if (player.hand == null || player.hand.handArray == null || player.hand.handArray.isEmpty()) {
             System.out.println("\nYour hand is empty");
         } else {
             for (Card card : player.hand.handArray) {
@@ -57,7 +55,7 @@ public class Hand {
     }
 
     public void takeOneCardFromDeck(Player player, Deck deck) {
-        if (deck.deck.isEmpty()) {
+        if (deck.deck.isEmpty() ||  deck == null) {
             throw new IllegalStateException("\nNo more cards left in the deck");
         }
         System.out.println("\nCard Taken from deck: " + deck.deck.getFirst().getValueAsString(deck.deck.getFirst().getValue()) + " of " + deck.deck.getFirst().getSuitAsString(deck.deck.getFirst().getSuit()));
@@ -65,7 +63,7 @@ public class Hand {
     }
 
     public void takeOneCardFromOpponent(Player player, Player opponent) {
-        if (opponent.hand == null) {
+        if (opponent.hand == null || opponent.hand.handArray == null || opponent.hand.handArray.isEmpty()) {
             System.out.println("\nOpponent has no cards left");
             return;
         }

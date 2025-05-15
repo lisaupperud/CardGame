@@ -36,9 +36,9 @@ public class CardTest {
     @DisplayName("Show suit of a single card as a String")
     void getSuitAsStringTest() {
         Card card = new Card(SPADES, JACK);
-        // both tests passed
+
         assertEquals("Spades", card.getSuitAsString(SPADES));
-        // assertEquals("Spades", Card.getSuitAsString(0));
+        assertEquals("Spades", card.getSuitAsString(0));
     }
 
     @Test

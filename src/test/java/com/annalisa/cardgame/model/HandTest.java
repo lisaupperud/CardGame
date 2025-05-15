@@ -36,9 +36,7 @@ public class HandTest {
         testDeck = cardDeck.deck;
         testHand = player.hand.handArray;
         handObject.printHand(player);
-        /*
-         * FRÅGA KRISTOFFER OM ASSERT PÅ DEN HÄR
-         * */
+
         assertEquals(10, testHand.size());
     }
 
