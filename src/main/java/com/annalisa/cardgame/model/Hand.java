@@ -3,7 +3,9 @@ package com.annalisa.cardgame.model;
 import com.annalisa.cardgame.util.ScannerUtility;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.Random;
 
 public class Hand {
 
@@ -33,25 +35,33 @@ public class Hand {
             for (Card card : player.hand.handArray) {
                 System.out.println(card.getValueAsString(card.getValue()) + " of " + card.getSuitAsString(card.getSuit()));
             }
-            /*
-            *  // Sort the hand by suit first, then by value
-        player.hand.handArray.sort((card1, card2) -> {
-            if (card1.getSuit() != card2.getSuit()) {
-                return Integer.compare(card1.getSuit(), card2.getSuit());
-            } else {
-                return Integer.compare(card1.getValue(), card2.getValue());
-            }
-        });
+        }
+    }
 
-        // Print the sorted hand
-        for (Card card : player.hand.handArray) {
-            System.out.println(
-                card.getValueAsString(card.getValue()) + " of " +
-                card.getSuitAsString(card.getSuit())
-            );
+    public void printSortedHand(Player player) {
+        if (player.hand == null || player.hand.handArray == null || player.hand.handArray.isEmpty()) {
+            System.out.println("\nYour hand is empty");
+        } else {
+            player.getHand().handArray.sort((card1, card2) -> {
+                // compare values
+                if (card1.getValue() != card2.getValue()) {
+                    return Integer.compare(card1.getValue(), card2.getValue());
+                } else {
+                    // if values are same - compare by suit
+                    return Integer.compare(card1.getSuit(), card2.getSuit());
+                }
+            });
+
+            for (Card card : player.getHand().handArray) {
+                System.out.println(
+                        card.getValueAsString(card.getValue()) + " of " +
+                                card.getSuitAsString(card.getSuit())
+                );
+            }
         }
-            * */
-        }
+
+
+
     }
 
     public void takeOneCardFromDeck(Player player, Deck deck) {

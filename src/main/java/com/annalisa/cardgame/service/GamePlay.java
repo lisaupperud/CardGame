@@ -8,6 +8,7 @@ public class GamePlay {
     private Player player1;
     private Player player2;
     private Deck deck;
+    boolean gameOver;
 
     public void runGame() {
         initiatePlayers();
@@ -21,13 +22,22 @@ public class GamePlay {
         boolean running = true;
         while (running) {
             if (deck == null && player1.hand.handArray == null && player2.hand.handArray == null) {
+                comparePoints(player1, player2);
+                running = false;
+            } else if (gameOver) {
                 running = false;
             }
             turn(player1, player2);
+            comparePoints(player1, player2);
+            if (gameOver) {
+                running = false;
+            }
             turn(player2, player1);
+            comparePoints(player2, player1);
+            if (gameOver) {
+                running = false;
+            }
         }
-        //comparePoints();
-
         System.out.println("Game over! Thank you for playing!");
         ScannerUtility.closeScanner();
     }
@@ -46,8 +56,8 @@ public class GamePlay {
 
     private void turn(Player player, Player opponent) {
         System.out.println("\n\u001B[33m" + player.getName() + "\u001B[0m, here is your hand:");
-        player.hand.printHand(player);
-        if (player.hand.handArray != null || player.hand.handArray.isEmpty()) {
+        player.hand.printSortedHand(player);
+        if (player.getHand().handArray != null || opponent.getHand().handArray != null) {
             System.out.println("\nChoose which of these values to ask your opponent for:");
             player.hand.printIndividualValues(player);
             player.hand.takeOneCardFromOpponent(player, opponent);
@@ -58,9 +68,16 @@ public class GamePlay {
         } else {
             player.hand.takeOneCardFromDeck(player, deck);
         }
-
     }
 
-    //private void comparePoints(Player player1, Player player2) {}
-
+    public void comparePoints(Player player1, Player player2) {
+        if (player1.getHand().getPointPile().size() >= 28) {
+            System.out.println("\n\u001B[33m" + player1.getName() + "\u001B[0m won!");
+            gameOver = true;
+        }
+        if (player2.getHand().getPointPile().size() >= 28) {
+            System.out.println("\n\u001B[33m" + player2.getName() + "\u001B[0m won!");
+            gameOver = true;
+        }
+    }
 }

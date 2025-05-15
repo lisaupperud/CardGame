@@ -49,22 +49,7 @@ public class HandTest {
         Collections.shuffle(testHand, new Random());
         Collections.shuffle(testHandUnsorted, new Random());
 
-        testHand.sort((card1, card2) -> {
-            // compare values
-            if (card1.getValue() != card2.getValue()) {
-                return Integer.compare(card1.getValue(), card2.getValue());
-            } else {
-                // if values are same - compare by suit
-                return Integer.compare(card1.getSuit(), card2.getSuit());
-            }
-        });
-
-        for (Card card : player.hand.handArray) {
-            System.out.println(
-                    card.getValueAsString(card.getValue()) + " of " +
-                            card.getSuitAsString(card.getSuit())
-            );
-        }
+        handObject.printSortedHand(player);
 
         assertNotEquals(testHand, testHandUnsorted);
     }
