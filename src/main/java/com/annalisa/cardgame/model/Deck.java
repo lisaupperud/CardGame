@@ -38,10 +38,6 @@ public class Deck {
         }
     }
 
-    public void cardsLeft() {
-        System.out.println(deck.size());
-    }
-
     public void findSpecificCard(int suit, int value) {
         matchingCardFound = false;
 

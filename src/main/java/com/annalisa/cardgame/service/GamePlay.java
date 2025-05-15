@@ -52,8 +52,6 @@ public class GamePlay {
         System.out.println("\nWelcome, \u001B[33m" + player1Name + "\u001B[0m and \u001B[33m" + player2Name + "\u001B[0m!");
     }
 
-    // TODO - test that if (player.hand.handArray = null) functions as intended
-
     private void turn(Player player, Player opponent) {
         System.out.println("\n\u001B[33m" + player.getName() + "\u001B[0m, here is your hand:");
         player.hand.printSortedHand(player);

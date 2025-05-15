@@ -3,9 +3,7 @@ package com.annalisa.cardgame.model;
 import com.annalisa.cardgame.util.ScannerUtility;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashSet;
-import java.util.Random;
 
 public class Hand {
 
@@ -26,16 +24,6 @@ public class Hand {
 
     public ArrayList<Card> getPointPile() {
         return pointPile;
-    }
-
-    public void printHand(Player player) {
-        if (player.hand == null || player.hand.handArray == null || player.hand.handArray.isEmpty()) {
-            System.out.println("\nYour hand is empty");
-        } else {
-            for (Card card : player.hand.handArray) {
-                System.out.println(card.getValueAsString(card.getValue()) + " of " + card.getSuitAsString(card.getSuit()));
-            }
-        }
     }
 
     public void printSortedHand(Player player) {
@@ -59,9 +47,6 @@ public class Hand {
                 );
             }
         }
-
-
-
     }
 
     public void takeOneCardFromDeck(Player player, Deck deck) {
@@ -138,17 +123,7 @@ public class Hand {
         }
 
         uniqueValuesOnHand = new HashSet<>(valuesOnHand);
-        /*
-        * Set<String> printableValues = new HashSet<>();
-    for (int value : uniqueValuesOnHand) {
-        printableValues.add(Card.getValueAsString(value));
-    }
-    System.out.println(printableValues);
-
-    return uniqueValuesOnHand;
-        * */
         System.out.println(uniqueValuesOnHand);
         return uniqueValuesOnHand;
     }
-
 }

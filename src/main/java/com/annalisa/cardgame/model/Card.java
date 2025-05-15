@@ -7,12 +7,6 @@ public class Card {
     private final int DIAMONDS = 2;
     private final int CLUBS = 3;
 
-    private final int JOKER = 0;
-    private final int ACE = 1;
-    private final int JACK = 11;
-    private final int QUEEN = 12;
-    private final int KING = 13;
-
     final int suit;
     final int value;
 
@@ -64,5 +58,4 @@ public class Card {
             default -> throw new IllegalArgumentException("Invalid Value");
         };
     }
-
 }
