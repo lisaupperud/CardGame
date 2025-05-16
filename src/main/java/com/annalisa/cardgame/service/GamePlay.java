@@ -21,7 +21,7 @@ public class GamePlay {
         }
         boolean running = true;
         while (running) {
-            if (deck == null && player1.hand.handArray == null && player2.hand.handArray == null) {
+            if (deck == null && player1.getHand().handArray == null && player2.getHand().handArray == null) {
                 comparePoints(player1, player2);
                 running = false;
             } else if (gameOver) {
@@ -54,17 +54,17 @@ public class GamePlay {
 
     private void turn(Player player, Player opponent) {
         System.out.println("\n\u001B[33m" + player.getName() + "\u001B[0m, here is your hand:");
-        player.hand.printSortedHand(player);
+        player.getHand().printSortedHand(player);
         if (player.getHand().handArray != null || opponent.getHand().handArray != null) {
             System.out.println("\nChoose which of these values to ask your opponent for:");
-            player.hand.printIndividualValues(player);
-            player.hand.takeOneCardFromOpponent(player, opponent);
-            if (!player.hand.cardTaken) {
-                player.hand.takeOneCardFromDeck(player, deck);
+            player.getHand().printIndividualValues(player);
+            player.getHand().takeOneCardFromOpponent(player, opponent);
+            if (!player.getHand().cardTaken) {
+                player.getHand().takeOneCardFromDeck(player, deck);
             }
-            player.hand.removeFourMatchingCards(player);
+            player.getHand().removeFourMatchingCards(player);
         } else {
-            player.hand.takeOneCardFromDeck(player, deck);
+            player.getHand().takeOneCardFromDeck(player, deck);
         }
     }
 

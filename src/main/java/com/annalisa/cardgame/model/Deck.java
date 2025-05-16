@@ -7,7 +7,7 @@ import java.util.Random;
 public class Deck {
     public ArrayList<Card> deck = new ArrayList<>();
     public boolean matchingCardFound;
-    public int indexOfCard;
+    int indexOfCard;
 
     public void generateDeck() {
         for (int i = 1; i <= 13; i++) {
@@ -29,12 +29,12 @@ public class Deck {
     }
 
     public void dealCard(int n, Player player) {
-        if (deck.isEmpty() || deck == null) {
+        if (deck.isEmpty()) {
             throw new IllegalStateException("\nNo more cards left");
         }
 
         for (int i = 0; i < n; i++) {
-            player.hand.handArray.add(deck.remove(0));
+            player.getHand().handArray.add(deck.removeFirst());
         }
     }
 

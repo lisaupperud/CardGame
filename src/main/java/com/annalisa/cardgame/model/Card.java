@@ -7,8 +7,8 @@ public class Card {
     private final int DIAMONDS = 2;
     private final int CLUBS = 3;
 
-    final int suit;
-    final int value;
+    private final int suit;
+    private final int value;
 
     public Card(int theSuit, int theValue) {
         if (theSuit != SPADES && theSuit != HEARTS && theSuit != DIAMONDS && theSuit != CLUBS) {

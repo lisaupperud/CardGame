@@ -2,8 +2,8 @@ package com.annalisa.cardgame.model;
 
 public class Player {
 
-    public String name;
-    public Hand hand;
+    private String name;
+    private Hand hand;
 
     public Player(String name) {
         this.name = name;
